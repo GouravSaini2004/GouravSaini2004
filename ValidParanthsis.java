@@ -31,5 +31,6 @@ public class ValidParanthsis{
         System.out.println("enter the string:");
         String str = sc.nextLine();
         System.out.println("is givan string valid "+isvalid(str));
+        sc.clode();
     }
 }
