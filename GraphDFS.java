@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ImplementationOfGraph {
+public class GraphDFS {
 
     public static class Edge {
         int src;
@@ -40,18 +40,37 @@ public class ImplementationOfGraph {
         graph[6].add(new Edge(6, 5));
     }
 
+    public static void dfs(ArrayList<Edge>[] graph,int v){
+        Queue<Integer> q = new LinkedList<>();
+        boolean vis[] = new boolean[v];
+        q.add(0);
+        while(!q.isEmpty()){
+            int curr = q.remove();
+            if(vis[curr]==false){
+                System.out.print(curr+" ");
+                vis[curr] = true;
+                for(int i=0;i<graph[curr].size();i++){
+                    Edge e = graph[curr].get(i);
+                    q.add(e.dest);
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int v = 7;
         ArrayList<Edge>[] graph = new ArrayList[v];
         createGraph(graph);
 
         // Print the graph for verification
-        for (int i = 0; i < v; i++) {
-            System.out.print("Vertex " + i + " is connected to: ");
-            for (Edge edge : graph[i]) {
-                System.out.print(edge.dest + " ");
-            }
-            System.out.println();
-        }
+        // for (int i = 0; i < v; i++) {
+        //     System.out.print("Vertex " + i + " is connected to: ");
+        //     for (Edge edge : graph[i]) {
+        //         System.out.print(edge.dest + " ");
+        //     }
+        //     System.out.println();
+        // }
+
+        dfs(graph,v);
     }
 }
